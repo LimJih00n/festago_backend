@@ -1,0 +1,97 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "email": "admin@festago.com",
+      "password": "pbkdf2_sha256$600000$saltsaltsalt$7G8xVFJqYQp8xN1kZ2mL3vR4wT5yU6iO7pA8sD9fG0hJ1kL2mN3oP4qR5sT6uV7wX8yZ9aB0cD1eF2gH3iJ4kL5mN6oP7qR8sT9uV0wX1yZ2",
+      "first_name": "관리자",
+      "last_name": "",
+      "is_staff": true,
+      "is_superuser": true,
+      "is_active": true,
+      "user_type": "consumer",
+      "phone": "010-1234-5678",
+      "profile_image": "https://i.pravatar.cc/150?img=1",
+      "date_joined": "2025-10-01T00:00:00Z",
+      "last_login": null
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "username": "testuser1",
+      "email": "user1@test.com",
+      "password": "pbkdf2_sha256$600000$saltsaltsalt$7G8xVFJqYQp8xN1kZ2mL3vR4wT5yU6iO7pA8sD9fG0hJ1kL2mN3oP4qR5sT6uV7wX8yZ9aB0cD1eF2gH3iJ4kL5mN6oP7qR8sT9uV0wX1yZ2",
+      "first_name": "김철수",
+      "last_name": "",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "user_type": "consumer",
+      "phone": "010-2345-6789",
+      "profile_image": "https://i.pravatar.cc/150?img=11",
+      "date_joined": "2025-10-15T00:00:00Z",
+      "last_login": null
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "username": "testuser2",
+      "email": "user2@test.com",
+      "password": "pbkdf2_sha256$600000$saltsaltsalt$7G8xVFJqYQp8xN1kZ2mL3vR4wT5yU6iO7pA8sD9fG0hJ1kL2mN3oP4qR5sT6uV7wX8yZ9aB0cD1eF2gH3iJ4kL5mN6oP7qR8sT9uV0wX1yZ2",
+      "first_name": "이영희",
+      "last_name": "",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "user_type": "consumer",
+      "phone": "010-3456-7890",
+      "profile_image": "https://i.pravatar.cc/150?img=5",
+      "date_joined": "2025-10-20T00:00:00Z",
+      "last_login": null
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "username": "partner1",
+      "email": "partner1@business.com",
+      "password": "pbkdf2_sha256$600000$saltsaltsalt$7G8xVFJqYQp8xN1kZ2mL3vR4wT5yU6iO7pA8sD9fG0hJ1kL2mN3oP4qR5sT6uV7wX8yZ9aB0cD1eF2gH3iJ4kL5mN6oP7qR8sT9uV0wX1yZ2",
+      "first_name": "박사업",
+      "last_name": "",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "user_type": "partner",
+      "phone": "010-4567-8901",
+      "profile_image": "https://i.pravatar.cc/150?img=12",
+      "date_joined": "2025-10-22T00:00:00Z",
+      "last_login": null
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "username": "partner2",
+      "email": "partner2@business.com",
+      "password": "pbkdf2_sha256$600000$saltsaltsalt$7G8xVFJqYQp8xN1kZ2mL3vR4wT5yU6iO7pA8sD9fG0hJ1kL2mN3oP4qR5sT6uV7wX8yZ9aB0cD1eF2gH3iJ4kL5mN6oP7qR8sT9uV0wX1yZ2",
+      "first_name": "최장사",
+      "last_name": "",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "user_type": "partner",
+      "phone": "010-5678-9012",
+      "profile_image": "https://i.pravatar.cc/150?img=13",
+      "date_joined": "2025-10-25T00:00:00Z",
+      "last_login": null
+    }
+  }
+]

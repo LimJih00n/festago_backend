@@ -1,0 +1,572 @@
+[
+  {
+    "model": "events.event",
+    "pk": 1,
+    "fields": {
+      "name": "서울 빛초롱축제",
+      "description": "청계천을 따라 펼쳐지는 화려한 LED 등불 축제. 다양한 주제의 대형 조형물과 포토존이 마련되어 있으며, 야간 산책 코스로 인기가 높습니다.",
+      "category": "festival",
+      "location": "서울시 종로구",
+      "address": "서울특별시 종로구 청계천로 1",
+      "latitude": 37.5706,
+      "longitude": 126.9789,
+      "start_date": "2025-11-01",
+      "end_date": "2025-11-30",
+      "poster_image": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800",
+      "website_url": "https://www.sisul.or.kr/open_content/cheonggye/",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 2,
+    "fields": {
+      "name": "부산 불꽃축제",
+      "description": "광안리 해수욕장에서 열리는 국내 최대 규모의 불꽃놀이 축제. 해운대와 광안대교를 배경으로 화려한 불꽃이 펼쳐집니다.",
+      "category": "festival",
+      "location": "부산시 수영구",
+      "address": "부산광역시 수영구 광안해변로 219",
+      "latitude": 35.1532,
+      "longitude": 129.1189,
+      "start_date": "2025-11-08",
+      "end_date": "2025-11-08",
+      "poster_image": "https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 3,
+    "fields": {
+      "name": "대구 치맥페스티벌",
+      "description": "치킨과 맥주의 완벽한 조합을 즐기는 여름 축제. 전국 유명 치킨 브랜드와 수제맥주가 한자리에 모입니다.",
+      "category": "festival",
+      "location": "대구시 중구",
+      "address": "대구광역시 중구 두류공원로 161",
+      "latitude": 35.8562,
+      "longitude": 128.5665,
+      "start_date": "2026-07-15",
+      "end_date": "2026-07-19",
+      "poster_image": "https://images.unsplash.com/photo-1594206801227-da33a77f9ef6?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 4,
+    "fields": {
+      "name": "제주 유채꽃축제",
+      "description": "제주 전역에서 봄에 열리는 유채꽃 축제. 노란 유채꽃밭과 한라산을 배경으로 아름다운 풍경을 감상할 수 있습니다.",
+      "category": "festival",
+      "location": "제주특별자치도 서귀포시",
+      "address": "제주특별자치도 서귀포시 성산읍 고성리",
+      "latitude": 33.4634,
+      "longitude": 126.8768,
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-15",
+      "poster_image": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 5,
+    "fields": {
+      "name": "자라섬 재즈페스티벌",
+      "description": "가평 자라섬에서 열리는 국내 최대 재즈 페스티벌. 국내외 유명 재즈 뮤지션들의 공연과 캠핑을 함께 즐길 수 있습니다.",
+      "category": "concert",
+      "location": "경기도 가평군",
+      "address": "경기도 가평군 가평읍 자라섬로 60",
+      "latitude": 37.8311,
+      "longitude": 127.5095,
+      "start_date": "2025-10-03",
+      "end_date": "2025-10-05",
+      "poster_image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800",
+      "website_url": "https://www.jarasumjazz.com",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 6,
+    "fields": {
+      "name": "서울 재즈페스티벌",
+      "description": "올림픽공원에서 열리는 도심 속 재즈 축제. 다양한 장르의 재즈와 퓨전 음악을 즐길 수 있습니다.",
+      "category": "concert",
+      "location": "서울시 송파구",
+      "address": "서울특별시 송파구 올림픽로 424",
+      "latitude": 37.5216,
+      "longitude": 127.1226,
+      "start_date": "2025-11-20",
+      "end_date": "2025-11-22",
+      "poster_image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 7,
+    "fields": {
+      "name": "부산 국제영화제",
+      "description": "아시아 최대 규모의 국제 영화제. 영화의전당과 해운대 일대에서 전 세계 영화인들이 모여 다양한 작품을 상영합니다.",
+      "category": "exhibition",
+      "location": "부산시 해운대구",
+      "address": "부산광역시 해운대구 수영강변대로 120",
+      "latitude": 35.1729,
+      "longitude": 129.1308,
+      "start_date": "2025-10-02",
+      "end_date": "2025-10-11",
+      "poster_image": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800",
+      "website_url": "https://www.biff.kr",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 8,
+    "fields": {
+      "name": "광주 비엔날레",
+      "description": "국제적으로 인정받는 현대미술 전시회. 전 세계 작가들의 실험적이고 혁신적인 작품을 만나볼 수 있습니다.",
+      "category": "exhibition",
+      "location": "광주시 북구",
+      "address": "광주광역시 북구 비엔날레로 111",
+      "latitude": 35.1894,
+      "longitude": 126.9097,
+      "start_date": "2025-09-05",
+      "end_date": "2025-11-09",
+      "poster_image": "https://images.unsplash.com/photo-1531243269054-5ebf6f34081e?w=800",
+      "website_url": "https://www.gwangjubiennale.org",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 9,
+    "fields": {
+      "name": "보령 머드축제",
+      "description": "보령 대천해수욕장에서 열리는 머드 테마 축제. 머드 마사지, 머드 슬라이드 등 다양한 체험 프로그램이 준비되어 있습니다.",
+      "category": "festival",
+      "location": "충청남도 보령시",
+      "address": "충청남도 보령시 신흑동 대천해수욕장",
+      "latitude": 36.3328,
+      "longitude": 126.6152,
+      "start_date": "2026-07-18",
+      "end_date": "2026-07-27",
+      "poster_image": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800",
+      "website_url": "https://www.mudfestival.or.kr",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 10,
+    "fields": {
+      "name": "전주 비빔밥축제",
+      "description": "전주 한옥마을에서 열리는 전통 음식 축제. 전주 비빔밥을 비롯한 다양한 한식을 맛볼 수 있습니다.",
+      "category": "festival",
+      "location": "전라북도 전주시",
+      "address": "전라북도 전주시 완산구 전주천동로 20",
+      "latitude": 35.815,
+      "longitude": 127.153,
+      "start_date": "2025-10-10",
+      "end_date": "2025-10-13",
+      "poster_image": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 11,
+    "fields": {
+      "name": "인천 펜타포트 락페스티벌",
+      "description": "송도 달빛축제공원에서 열리는 대규모 록 페스티벌. 국내외 유명 록 밴드들의 열정적인 공연을 즐길 수 있습니다.",
+      "category": "concert",
+      "location": "인천시 연수구",
+      "address": "인천광역시 연수구 센트럴로 350",
+      "latitude": 37.3891,
+      "longitude": 126.6439,
+      "start_date": "2026-08-07",
+      "end_date": "2026-08-09",
+      "poster_image": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 12,
+    "fields": {
+      "name": "경주 벚꽃축제",
+      "description": "경주 보문호와 첨성대 일대에서 열리는 봄꽃 축제. 야간 조명과 함께 벚꽃 터널을 걸을 수 있습니다.",
+      "category": "festival",
+      "location": "경상북도 경주시",
+      "address": "경상북도 경주시 보문로 424-33",
+      "latitude": 35.8304,
+      "longitude": 129.2828,
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-10",
+      "poster_image": "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 13,
+    "fields": {
+      "name": "강릉 커피축제",
+      "description": "커피의 도시 강릉에서 열리는 스페셜티 커피 축제. 전국 로스터리 카페들의 시음과 바리스타 대회가 진행됩니다.",
+      "category": "festival",
+      "location": "강원도 강릉시",
+      "address": "강원도 강릉시 창해로14번길 20-1",
+      "latitude": 37.7651,
+      "longitude": 128.896,
+      "start_date": "2025-10-17",
+      "end_date": "2025-10-20",
+      "poster_image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 14,
+    "fields": {
+      "name": "서울 디자인 페스티벌",
+      "description": "동대문디자인플라자에서 열리는 디자인 전시 및 페어. 국내외 디자이너들의 혁신적인 작품과 트렌드를 만나볼 수 있습니다.",
+      "category": "exhibition",
+      "location": "서울시 중구",
+      "address": "서울특별시 중구 을지로 281",
+      "latitude": 37.5666,
+      "longitude": 127.0095,
+      "start_date": "2025-11-15",
+      "end_date": "2025-11-20",
+      "poster_image": "https://images.unsplash.com/photo-1524503033411-c9566986fc8f?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 15,
+    "fields": {
+      "name": "수원 화성문화제",
+      "description": "유네스코 세계문화유산 수원 화성에서 열리는 전통 문화 축제. 조선시대 왕실 행차 재현과 전통 공연이 펼쳐집니다.",
+      "category": "festival",
+      "location": "경기도 수원시",
+      "address": "경기도 수원시 팔달구 정조로 825",
+      "latitude": 37.2865,
+      "longitude": 127.0159,
+      "start_date": "2025-10-08",
+      "end_date": "2025-10-12",
+      "poster_image": "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 16,
+    "fields": {
+      "name": "춘천 마임축제",
+      "description": "국내 유일의 마임 전문 축제. 거리 퍼포먼스와 무언극 공연을 통해 언어 없는 예술의 매력을 느낄 수 있습니다.",
+      "category": "concert",
+      "location": "강원도 춘천시",
+      "address": "강원도 춘천시 영서로 2854",
+      "latitude": 37.8608,
+      "longitude": 127.7346,
+      "start_date": "2025-09-25",
+      "end_date": "2025-09-30",
+      "poster_image": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 17,
+    "fields": {
+      "name": "나이키 팝업스토어",
+      "description": "성수동에서 열리는 나이키 한정판 팝업스토어. 신제품 체험과 한정판 스니커즈를 만나볼 수 있습니다.",
+      "category": "popup",
+      "location": "서울시 성동구",
+      "address": "서울특별시 성동구 연무장길 74",
+      "latitude": 37.5447,
+      "longitude": 127.0557,
+      "start_date": "2025-11-01",
+      "end_date": "2025-11-15",
+      "poster_image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 18,
+    "fields": {
+      "name": "카카오프렌즈 플래그십 스토어",
+      "description": "홍대에서 만나는 카카오프렌즈 대형 팝업스토어. 다양한 굿즈와 포토존, 캐릭터 체험 공간이 마련되어 있습니다.",
+      "category": "popup",
+      "location": "서울시 마포구",
+      "address": "서울특별시 마포구 양화로 160",
+      "latitude": 37.556,
+      "longitude": 126.924,
+      "start_date": "2025-11-10",
+      "end_date": "2026-01-31",
+      "poster_image": "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 19,
+    "fields": {
+      "name": "안동 국제탈춤페스티벌",
+      "description": "안동 하회마을에서 열리는 전통 탈춤 축제. 국내외 탈춤 공연과 체험 프로그램이 진행됩니다.",
+      "category": "festival",
+      "location": "경상북도 안동시",
+      "address": "경상북도 안동시 육사로 239",
+      "latitude": 36.5684,
+      "longitude": 128.7294,
+      "start_date": "2025-09-26",
+      "end_date": "2025-10-05",
+      "poster_image": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 20,
+    "fields": {
+      "name": "서울 세계불꽃축제",
+      "description": "한강 여의도에서 열리는 대규모 불꽃놀이 축제. 한화그룹이 주최하며 매년 100만명 이상이 방문합니다.",
+      "category": "festival",
+      "location": "서울시 영등포구",
+      "address": "서울특별시 영등포구 여의동로 330",
+      "latitude": 37.5286,
+      "longitude": 126.9352,
+      "start_date": "2025-10-07",
+      "end_date": "2025-10-07",
+      "poster_image": "https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=800",
+      "website_url": "https://www.hanwha.co.kr",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 21,
+    "fields": {
+      "name": "대전 사이언스 페스티벌",
+      "description": "국립중앙과학관에서 열리는 과학 축제. 다양한 과학 실험과 체험 프로그램으로 온 가족이 함께 즐길 수 있습니다.",
+      "category": "festival",
+      "location": "대전시 유성구",
+      "address": "대전광역시 유성구 대덕대로 481",
+      "latitude": 36.3703,
+      "longitude": 127.3751,
+      "start_date": "2025-11-05",
+      "end_date": "2025-11-10",
+      "poster_image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 22,
+    "fields": {
+      "name": "여수 밤바다 축제",
+      "description": "여수 해상케이블카와 오동도를 배경으로 열리는 야경 축제. LED 조명과 레이저쇼가 펼쳐집니다.",
+      "category": "festival",
+      "location": "전라남도 여수시",
+      "address": "전라남도 여수시 돌산읍 돌산로 3600-1",
+      "latitude": 34.7465,
+      "longitude": 127.7539,
+      "start_date": "2025-12-01",
+      "end_date": "2026-01-31",
+      "poster_image": "https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 23,
+    "fields": {
+      "name": "평창 송어축제",
+      "description": "얼어붙은 강에서 송어를 직접 잡는 겨울 축제. 얼음 낚시와 썰매 등 다양한 겨울 레저를 즐길 수 있습니다.",
+      "category": "festival",
+      "location": "강원도 평창군",
+      "address": "강원도 평창군 진부면 경강로 3562",
+      "latitude": 37.6309,
+      "longitude": 128.6641,
+      "start_date": "2025-12-20",
+      "end_date": "2026-02-28",
+      "poster_image": "https://images.unsplash.com/photo-1483664852095-d6cc6870702d?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 24,
+    "fields": {
+      "name": "통영 국제음악제",
+      "description": "윤이상 기념 공원에서 열리는 클래식 음악 축제. 국내외 유명 음악가들의 오케스트라 공연이 펼쳐집니다.",
+      "category": "concert",
+      "location": "경상남도 통영시",
+      "address": "경상남도 통영시 중앙로 99",
+      "latitude": 34.8544,
+      "longitude": 128.433,
+      "start_date": "2026-03-27",
+      "end_date": "2026-04-05",
+      "poster_image": "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 25,
+    "fields": {
+      "name": "서울 프린지 페스티벌",
+      "description": "홍대 일대에서 열리는 거리 예술 축제. 누구나 참여할 수 있는 열린 공연 축제로 다양한 실험적 공연이 펼쳐집니다.",
+      "category": "concert",
+      "location": "서울시 마포구",
+      "address": "서울특별시 마포구 홍익로3길 20",
+      "latitude": 37.5508,
+      "longitude": 126.9219,
+      "start_date": "2026-08-20",
+      "end_date": "2026-08-30",
+      "poster_image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 26,
+    "fields": {
+      "name": "포항 국제불빛축제",
+      "description": "형산강 일대에서 열리는 빛과 불꽃의 향연. 워터 스크린과 레이저쇼, 불꽃놀이가 결합된 융복합 축제입니다.",
+      "category": "festival",
+      "location": "경상북도 포항시",
+      "address": "경상북도 포항시 북구 중앙로 1",
+      "latitude": 36.019,
+      "longitude": 129.3435,
+      "start_date": "2026-07-30",
+      "end_date": "2026-08-02",
+      "poster_image": "https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 27,
+    "fields": {
+      "name": "국립현대미술관 서울관 기획전",
+      "description": "삼청동 국립현대미술관에서 열리는 대규모 기획전. 국내외 현대미술 작가들의 작품을 감상할 수 있습니다.",
+      "category": "exhibition",
+      "location": "서울시 종로구",
+      "address": "서울특별시 종로구 삼청로 30",
+      "latitude": 37.5861,
+      "longitude": 126.9815,
+      "start_date": "2025-11-01",
+      "end_date": "2026-02-28",
+      "poster_image": "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=800",
+      "website_url": "https://www.mmca.go.kr",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 28,
+    "fields": {
+      "name": "코엑스 아트페어",
+      "description": "강남 코엑스에서 열리는 국제 미술품 거래 박람회. 갤러리들의 엄선된 작품을 만나보고 구매할 수 있습니다.",
+      "category": "exhibition",
+      "location": "서울시 강남구",
+      "address": "서울특별시 강남구 영동대로 513",
+      "latitude": 37.5126,
+      "longitude": 127.0594,
+      "start_date": "2025-09-03",
+      "end_date": "2025-09-07",
+      "poster_image": "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 29,
+    "fields": {
+      "name": "애플 스토어 팝업",
+      "description": "강남 가로수길에서 열리는 애플 신제품 체험 팝업스토어. iPhone과 MacBook 신제품을 직접 체험할 수 있습니다.",
+      "category": "popup",
+      "location": "서울시 강남구",
+      "address": "서울특별시 강남구 가로수길 42",
+      "latitude": 37.5187,
+      "longitude": 127.0222,
+      "start_date": "2025-11-15",
+      "end_date": "2025-11-30",
+      "poster_image": "https://images.unsplash.com/photo-1530319067432-f2a729c03db5?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "events.event",
+    "pk": 30,
+    "fields": {
+      "name": "무주 반딧불축제",
+      "description": "청정 자연에서 반딧불이를 관찰하는 생태 축제. 야간 생태탐방과 천문 관측 프로그램이 진행됩니다.",
+      "category": "festival",
+      "location": "전라북도 무주군",
+      "address": "전라북도 무주군 설천면 무설로 1324",
+      "latitude": 36.007,
+      "longitude": 127.6604,
+      "start_date": "2026-06-05",
+      "end_date": "2026-06-14",
+      "poster_image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+      "website_url": "",
+      "created_at": "2025-10-01T00:00:00Z",
+      "updated_at": "2025-10-01T00:00:00Z"
+    }
+  }
+]
