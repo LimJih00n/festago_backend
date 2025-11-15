@@ -5,10 +5,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from events.views import ReviewViewSet
+
+# 리뷰 전용 라우터 (루트 레벨)
+review_router = DefaultRouter()
+review_router.register(r'reviews', ReviewViewSet, basename='review')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -21,6 +27,9 @@ urlpatterns = [
     path('api/users/', include('users.urls')),
     path('api/events/', include('events.urls')),
     path('api/partners/', include('partners.urls')),
+
+    # Reviews (별도 경로로 분리)
+    path('api/', include(review_router.urls)),
 ]
 
 # Serve media files in development
