@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Fixing duplicate email users..."
+python manage.py fix_duplicate_emails || echo "No duplicates or command not available yet"
+
 echo "Running migrations..."
 python manage.py migrate
 

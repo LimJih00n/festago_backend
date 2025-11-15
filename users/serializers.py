@@ -35,11 +35,10 @@ class EmailOrUsernameTokenObtainPairSerializer(TokenObtainPairSerializer):
             # Try to get user by email first
             user = None
             if '@' in username_or_email:
-                try:
-                    user = User.objects.get(email=username_or_email)
+                # Use filter().first() to handle potential duplicate emails
+                user = User.objects.filter(email=username_or_email).first()
+                if user:
                     username_or_email = user.username
-                except User.DoesNotExist:
-                    pass
 
             # Authenticate with username (either original or from email lookup)
             user = authenticate(

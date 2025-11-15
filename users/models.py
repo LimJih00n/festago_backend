@@ -8,6 +8,15 @@ class User(AbstractUser):
         ('partner', '사업자'),
     ]
 
+    # Email을 unique하게 만들기 위해 재정의
+    email = models.EmailField(
+        'email address',
+        unique=True,
+        error_messages={
+            'unique': "이 이메일 주소는 이미 사용 중입니다.",
+        },
+    )
+
     user_type = models.CharField(
         max_length=10,
         choices=USER_TYPE_CHOICES,
