@@ -9,6 +9,7 @@ CSV 파일을 Django fixtures JSON으로 변환하는 스크립트
 import csv
 import json
 from datetime import datetime, timedelta
+from django.utils import timezone
 
 
 def excel_date_to_iso(excel_date):
@@ -42,6 +43,9 @@ def csv_to_fixtures(csv_file_path, output_json_path, start_pk=1):
     """
     fixtures = []
 
+    # 현재 시간 (ISO 8601 형식)
+    now = datetime.now().isoformat()
+
     # CSV 파일 읽기
     with open(csv_file_path, 'r', encoding='utf-8-sig') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -63,6 +67,8 @@ def csv_to_fixtures(csv_file_path, output_json_path, start_pk=1):
                     "end_date": excel_date_to_iso(row['end_date']),
                     "poster_image": row['poster_image'].strip(),
                     "website_url": row['website_url'].strip() if row['website_url'] else "",
+                    "created_at": now,
+                    "updated_at": now,
                 }
             }
 
