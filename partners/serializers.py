@@ -2,10 +2,99 @@ from rest_framework import serializers
 from .models import Partner, Application, Message, AnalyticsData, ImageUpload, Notification, ApplicationDraft, FestivalBookmark
 from events.serializers import EventSerializer
 from django.contrib.auth import get_user_model
+from django.db import transaction
 from PIL import Image
 import io
 
 User = get_user_model()
+
+
+class PartnerSignupSerializer(serializers.Serializer):
+    """파트너 회원가입 Serializer"""
+
+    # User 정보
+    username = serializers.CharField(max_length=150)
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True, min_length=8)
+
+    # 사업자 기본 정보
+    business_name = serializers.CharField(max_length=200)
+    business_number = serializers.CharField(max_length=50)
+    representative_name = serializers.CharField(max_length=100)
+    business_type = serializers.CharField(max_length=100)
+    address = serializers.CharField()
+    postal_code = serializers.CharField(max_length=10, required=False, allow_blank=True)
+    phone = serializers.CharField(max_length=20)
+    partner_email = serializers.EmailField()
+    business_certificate = serializers.URLField(required=False, allow_blank=True)
+
+    # 브랜드 정보
+    brand_name = serializers.CharField(max_length=200)
+    brand_logo = serializers.URLField(required=False, allow_blank=True)
+    brand_intro = serializers.CharField()
+    products = serializers.CharField()
+
+    # 선택 정보
+    sns_links = serializers.JSONField(required=False)
+    website = serializers.URLField(required=False, allow_blank=True)
+    portfolio_images = serializers.JSONField(required=False)
+    festival_images = serializers.JSONField(required=False)
+
+    def validate_username(self, value):
+        """아이디 중복 체크"""
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError('이미 사용 중인 아이디입니다.')
+        return value
+
+    def validate_email(self, value):
+        """이메일 중복 체크"""
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError('이미 사용 중인 이메일입니다.')
+        return value
+
+    def validate_business_number(self, value):
+        """사업자등록번호 중복 체크"""
+        if Partner.objects.filter(business_number=value).exists():
+            raise serializers.ValidationError('이미 등록된 사업자등록번호입니다.')
+        return value
+
+    @transaction.atomic
+    def create(self, validated_data):
+        """User와 Partner를 함께 생성"""
+        # User 생성
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password'],
+            user_type='partner'
+        )
+
+        # Partner 생성
+        partner = Partner.objects.create(
+            user=user,
+            business_name=validated_data['business_name'],
+            business_number=validated_data['business_number'],
+            representative_name=validated_data['representative_name'],
+            business_type=validated_data['business_type'],
+            address=validated_data['address'],
+            postal_code=validated_data.get('postal_code', ''),
+            phone=validated_data['phone'],
+            email=validated_data['partner_email'],
+            business_certificate=validated_data.get('business_certificate', ''),
+            brand_name=validated_data['brand_name'],
+            brand_logo=validated_data.get('brand_logo', ''),
+            brand_intro=validated_data['brand_intro'],
+            products=validated_data['products'],
+            sns_links=validated_data.get('sns_links', {}),
+            website=validated_data.get('website', ''),
+            portfolio_images=validated_data.get('portfolio_images', []),
+            festival_images=validated_data.get('festival_images', [])
+        )
+
+        return {
+            'user': user,
+            'partner': partner
+        }
 
 
 class PartnerSerializer(serializers.ModelSerializer):

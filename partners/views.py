@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter
 from .models import Partner, Application, Message, AnalyticsData, ImageUpload, Notification, ApplicationDraft, FestivalBookmark
 from events.models import Event
 from .serializers import (
+    PartnerSignupSerializer,
     PartnerSerializer,
     PartnerPublicSerializer,
     ApplicationSerializer,
@@ -31,6 +32,25 @@ class IsPartner(permissions.BasePermission):
     """사업자 권한 체크"""
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.user_type == 'partner'
+
+
+class PartnerSignupView(APIView):
+    """파트너 회원가입 View"""
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = PartnerSignupSerializer(data=request.data)
+        if serializer.is_valid():
+            result = serializer.save()
+            return Response({
+                'message': '파트너 회원가입이 완료되었습니다.',
+                'user_id': result['user'].id,
+                'partner_id': result['partner'].id,
+                'username': result['user'].username,
+                'email': result['user'].email,
+                'brand_name': result['partner'].brand_name
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PartnerViewSet(viewsets.ModelViewSet):

@@ -14,6 +14,7 @@ router.register('bookmarks', views.FestivalBookmarkViewSet, basename='bookmark')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('signup/', views.PartnerSignupView.as_view(), name='partner-signup'),
     path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
     path('festivals/', views.PartnerFestivalListView.as_view(), name='festivals'),
 ]
