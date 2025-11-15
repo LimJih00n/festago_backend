@@ -20,8 +20,8 @@ class Event(models.Model):
     longitude = models.FloatField(null=True, blank=True)
     start_date = models.DateField()
     end_date = models.DateField()
-    poster_image = models.URLField()
-    website_url = models.URLField(blank=True)
+    poster_image = models.URLField(max_length=500)
+    website_url = models.URLField(max_length=500, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
