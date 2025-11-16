@@ -2,11 +2,15 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import EventViewSet, BookmarkViewSet
 
-# Events와 Bookmarks 라우터
-router = DefaultRouter()
-router.register(r'', EventViewSet, basename='event')
-router.register(r'bookmarks', BookmarkViewSet, basename='bookmark')
+# 이벤트 라우터
+event_router = DefaultRouter()
+event_router.register(r'', EventViewSet, basename='event')
+
+# 북마크 라우터
+bookmark_router = DefaultRouter()
+bookmark_router.register(r'', BookmarkViewSet, basename='bookmark')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('bookmarks/', include(bookmark_router.urls)),
+    path('', include(event_router.urls)),
 ]
