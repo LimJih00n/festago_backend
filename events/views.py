@@ -1,7 +1,7 @@
 from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from django.utils import timezone
 from .models import Event, Bookmark, Review
@@ -12,8 +12,10 @@ from .serializers import (
 
 
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
+    """이벤트 API - 누구나 조회 가능"""
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    permission_classes = [AllowAny]  # 인증 없이 조회 가능
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['category', 'location']
     search_fields = ['name', 'description', 'location']
