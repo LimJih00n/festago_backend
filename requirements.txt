@@ -11,3 +11,4 @@ Pillow==10.4.0
 reportlab==4.0.7
 openpyxl==3.1.2
 openai==1.55.0
+pandas==2.1.4
