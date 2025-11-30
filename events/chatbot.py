@@ -130,7 +130,7 @@ class ChatbotView(APIView):
                             'location': event.location,
                             'start_date': str(event.start_date) if event.start_date else None,
                             'end_date': str(event.end_date) if event.end_date else None,
-                            'poster_image': event.poster_image.url if event.poster_image else None,
+                            'poster_image': event.poster_image if event.poster_image else None,
                         })
 
                     # 응답에서 JSON 부분 제거
