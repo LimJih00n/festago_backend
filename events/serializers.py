@@ -53,7 +53,7 @@ class ReviewSerializer(serializers.ModelSerializer):
             'id', 'user', 'user_name', 'event', 'event_id', 'event_name',
             'rating', 'comment', 'images', 'created_at', 'updated_at', 'is_owner'
         ]
-        read_only_fields = ['id', 'user', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'user', 'event', 'created_at', 'updated_at']
 
     def get_is_owner(self, obj):
         """현재 로그인한 사용자가 작성한 리뷰인지"""
@@ -63,6 +63,14 @@ class ReviewSerializer(serializers.ModelSerializer):
         return False
 
     def create(self, validated_data):
+        # event_id를 event로 변환
+        event_id = validated_data.pop('event_id', None)
+        if event_id:
+            try:
+                validated_data['event'] = Event.objects.get(id=event_id)
+            except Event.DoesNotExist:
+                raise serializers.ValidationError({'event_id': '존재하지 않는 이벤트입니다.'})
+
         # 현재 로그인한 사용자를 자동으로 할당
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)

@@ -26,50 +26,12 @@ class SignupSerializer(serializers.ModelSerializer):
 class EmailOrUsernameTokenObtainPairSerializer(TokenObtainPairSerializer):
     username_field = 'username'
 
-    # 하드코딩된 테스트 계정
-    HARDCODED_ACCOUNTS = {
-        'user@naver.com': {
-            'password': 'test1234',
-            'username': 'testuser',
-            'user_type': 'consumer',
-            'id': 9999
-        },
-        'admin@naver.com': {
-            'password': 'test1234',
-            'username': 'testadmin',
-            'user_type': 'partner',
-            'id': 9998
-        }
-    }
-
     def validate(self, attrs):
         # Get the username field (which might be email or username)
         username_or_email = attrs.get('username')
         password = attrs.get('password')
 
         if username_or_email and password:
-            # 하드코딩된 계정 체크
-            if username_or_email in self.HARDCODED_ACCOUNTS:
-                account_info = self.HARDCODED_ACCOUNTS[username_or_email]
-                if password == account_info['password']:
-                    # 하드코딩된 계정으로 로그인 성공
-                    # 메모리에만 존재하는 User 객체 생성 또는 DB에서 가져오기
-                    user, created = User.objects.get_or_create(
-                        email=username_or_email,
-                        defaults={
-                            'username': account_info['username'],
-                            'user_type': account_info['user_type']
-                        }
-                    )
-                    if created:
-                        user.set_password(password)
-                        user.save()
-
-                    attrs['username'] = user.username
-                    # JWT 토큰 생성을 위해 user 정보 저장
-                    self.user = user
-                    return super().validate(attrs)
-
             # Try to get user by email first
             user = None
             if '@' in username_or_email:

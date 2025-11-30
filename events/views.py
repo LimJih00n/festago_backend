@@ -120,8 +120,17 @@ class ReviewViewSet(viewsets.ModelViewSet):
         """리뷰 생성 (중복 체크)"""
         event_id = request.data.get('event_id')
 
+        # event_id를 정수로 변환 (프론트엔드에서 string으로 전달될 수 있음)
+        try:
+            event_id = int(event_id) if event_id else None
+        except (ValueError, TypeError):
+            return Response(
+                {'detail': '유효하지 않은 이벤트 ID입니다.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
         # 이미 리뷰를 작성했는지 확인
-        if Review.objects.filter(user=request.user, event_id=event_id).exists():
+        if event_id and Review.objects.filter(user=request.user, event_id=event_id).exists():
             return Response(
                 {'detail': '이미 이 이벤트에 리뷰를 작성했습니다.'},
                 status=status.HTTP_400_BAD_REQUEST
