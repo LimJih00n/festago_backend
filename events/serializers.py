@@ -28,7 +28,7 @@ class EventMapSerializer(serializers.ModelSerializer):
 
 class BookmarkSerializer(serializers.ModelSerializer):
     event = EventSerializer(read_only=True)
-    event_id = serializers.IntegerField(write_only=True)
+    event_id = serializers.IntegerField(write_only=True, required=True)
 
     class Meta:
         model = Bookmark
@@ -43,6 +43,8 @@ class BookmarkSerializer(serializers.ModelSerializer):
                 validated_data['event'] = Event.objects.get(id=event_id)
             except Event.DoesNotExist:
                 raise serializers.ValidationError({'event_id': '존재하지 않는 이벤트입니다.'})
+        else:
+            raise serializers.ValidationError({'event_id': '이벤트 ID가 필요합니다.'})
 
         # 현재 로그인한 사용자를 자동으로 할당
         validated_data['user'] = self.context['request'].user
@@ -52,7 +54,7 @@ class BookmarkSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(source='user.username', read_only=True)
     event_name = serializers.CharField(source='event.name', read_only=True)
-    event_id = serializers.IntegerField(write_only=True, required=False)
+    event_id = serializers.IntegerField(write_only=True, required=True)  # 필수로 변경
     is_owner = serializers.SerializerMethodField()
 
     class Meta:
@@ -78,9 +80,10 @@ class ReviewSerializer(serializers.ModelSerializer):
                 validated_data['event'] = Event.objects.get(id=event_id)
             except Event.DoesNotExist:
                 raise serializers.ValidationError({'event_id': '존재하지 않는 이벤트입니다.'})
+        else:
+            raise serializers.ValidationError({'event_id': '이벤트 ID가 필요합니다.'})
 
-        # 현재 로그인한 사용자를 자동으로 할당
-        validated_data['user'] = self.context['request'].user
+        # user는 perform_create에서 설정됨
         return super().create(validated_data)
 
 
