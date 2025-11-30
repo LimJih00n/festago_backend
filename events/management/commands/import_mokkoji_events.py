@@ -120,10 +120,15 @@ class Command(BaseCommand):
         # 데이터 로드
         dfs = []
 
-        # CSV 파일 처리
-        df_csv = self.process_file(csv_file, 'csv')
-        if df_csv is not None:
-            dfs.append(df_csv)
+        # CSV 파일 처리 (여러 CSV 파일 지원)
+        csv_files = [
+            csv_file,
+            'scripts/Mokkoji_events_dec.csv',  # 12월 이벤트
+        ]
+        for csv_path in csv_files:
+            df_csv = self.process_file(csv_path, 'csv')
+            if df_csv is not None:
+                dfs.append(df_csv)
 
         # Excel 파일 처리
         df_excel = self.process_file(excel_file, 'excel')

@@ -254,9 +254,31 @@ class AnalyticsViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsPartner]
 
     def get_queryset(self):
-        return AnalyticsData.objects.filter(
-            partner__user=self.request.user
+        """
+        현재 파트너의 성과 데이터를 반환
+        데이터가 없으면 다른 파트너의 데이터를 랜덤하게 반환 (mock data)
+        """
+        try:
+            partner = self.request.user.partner_profile
+        except Partner.DoesNotExist:
+            return AnalyticsData.objects.none()
+
+        # 현재 파트너의 실제 데이터
+        own_data = AnalyticsData.objects.filter(
+            partner=partner
         ).select_related('partner', 'event', 'application')
+
+        # 실제 데이터가 있으면 그대로 반환
+        if own_data.exists():
+            return own_data
+
+        # 데이터가 없으면 다른 파트너의 데이터를 랜덤하게 가져옴 (mock data)
+        # 최대 5개
+        mock_data = AnalyticsData.objects.exclude(
+            partner=partner
+        ).select_related('partner', 'event', 'application').order_by('?')[:5]
+
+        return mock_data
 
     @action(detail=True, methods=['get'], url_path='export-pdf')
     def export_pdf(self, request, pk=None):
@@ -280,7 +302,16 @@ class AnalyticsViewSet(viewsets.ReadOnlyModelViewSet):
     @action(detail=False, methods=['get'])
     def summary(self, request):
         """전체 성과 데이터 요약"""
-        partner = request.user.partner_profile
+        try:
+            partner = request.user.partner_profile
+        except Partner.DoesNotExist:
+            return Response({'error': '파트너 프로필이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
+
+        # 현재 파트너의 실제 데이터 확인
+        own_data = AnalyticsData.objects.filter(partner=partner)
+        is_mock_data = not own_data.exists()
+
+        # get_queryset()이 mock data를 반환할 수 있음
         analytics_qs = self.get_queryset()
 
         # 집계 데이터
@@ -294,6 +325,9 @@ class AnalyticsViewSet(viewsets.ReadOnlyModelViewSet):
 
         # 이벤트 수
         summary_data['total_events'] = analytics_qs.count()
+
+        # mock data 여부 표시
+        summary_data['is_sample_data'] = is_mock_data
 
         # 최고 성과 이벤트
         best_event = analytics_qs.order_by('-visitor_count').first()
