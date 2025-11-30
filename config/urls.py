@@ -9,6 +9,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 from users.views import EmailOrUsernameTokenObtainPairView
 from events.views import ReviewViewSet
+from events.chatbot import ChatbotView
 
 # 리뷰 전용 라우터 (루트 레벨)
 review_router = DefaultRouter()
@@ -28,6 +29,9 @@ urlpatterns = [
 
     # Reviews (별도 경로로 분리)
     path('api/', include(review_router.urls)),
+
+    # Chatbot
+    path('api/chatbot/', ChatbotView.as_view(), name='chatbot'),
 ]
 
 # Serve media files in development
