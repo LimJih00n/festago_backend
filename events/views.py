@@ -3,6 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
+from django.utils import timezone
 from .models import Event, Bookmark, Review
 from .serializers import (
     EventSerializer, EventMapSerializer, BookmarkSerializer,
@@ -17,6 +18,17 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ['category', 'location']
     search_fields = ['name', 'description', 'location']
     ordering_fields = ['start_date', 'created_at']
+
+    def get_queryset(self):
+        """날짜가 지나지 않은 이벤트만 반환 (end_date >= 오늘)"""
+        today = timezone.now().date()
+        queryset = Event.objects.filter(end_date__gte=today)
+
+        # include_past 파라미터가 있으면 모든 이벤트 반환 (관리자용)
+        if self.request.query_params.get('include_past') == 'true':
+            queryset = Event.objects.all()
+
+        return queryset
 
     @action(detail=False, methods=['get'])
     def map(self, request):
