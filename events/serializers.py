@@ -36,6 +36,14 @@ class BookmarkSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'created_at']
 
     def create(self, validated_data):
+        # event_id를 event로 변환
+        event_id = validated_data.pop('event_id', None)
+        if event_id:
+            try:
+                validated_data['event'] = Event.objects.get(id=event_id)
+            except Event.DoesNotExist:
+                raise serializers.ValidationError({'event_id': '존재하지 않는 이벤트입니다.'})
+
         # 현재 로그인한 사용자를 자동으로 할당
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
