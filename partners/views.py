@@ -428,8 +428,9 @@ class PartnerFestivalListView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request):
-        # 모든 축제 (과거 포함)
-        festivals = Event.objects.all().order_by('-start_date')
+        # 진행 중이거나 예정된 축제만 (end_date >= 오늘)
+        today = date.today()
+        festivals = Event.objects.filter(end_date__gte=today).order_by('start_date')
 
         # 검색 필터
         search = request.query_params.get('search', None)
