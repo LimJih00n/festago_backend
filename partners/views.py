@@ -5,12 +5,127 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.db.models import Q, Sum, Avg
 from django.http import HttpResponse
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
+from decimal import Decimal
+import random
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 from .models import Partner, Application, Message, AnalyticsData, ImageUpload, Notification, ApplicationDraft, FestivalBookmark
 from events.models import Event
+
+
+def generate_mock_data_for_partner(partner):
+    """
+    새 파트너에게 mock 데이터 생성
+    - 2-3개의 완료된 지원서
+    - 각 지원서에 대한 성과 데이터
+    """
+    # 과거 이벤트 가져오기 (종료된 이벤트)
+    today = date.today()
+    past_events = Event.objects.filter(end_date__lt=today).order_by('-end_date')[:5]
+
+    if not past_events.exists():
+        # 과거 이벤트가 없으면 현재 이벤트 사용
+        past_events = Event.objects.all().order_by('-start_date')[:5]
+
+    if not past_events.exists():
+        return  # 이벤트가 없으면 mock 데이터 생성 불가
+
+    # 2-3개의 이벤트 선택
+    selected_events = list(past_events[:random.randint(2, min(3, past_events.count()))])
+
+    booth_types = ['food', 'goods', 'experience', 'promotion']
+    booth_sizes = ['3x3', '6x3']
+
+    total_applications = 0
+    total_approvals = 0
+
+    for event in selected_events:
+        # 이미 이 이벤트에 지원서가 있으면 건너뛰기
+        if Application.objects.filter(partner=partner, event=event).exists():
+            continue
+
+        # 지원서 생성 (완료 상태)
+        application = Application.objects.create(
+            partner=partner,
+            event=event,
+            status='completed',
+            booth_type=random.choice(booth_types),
+            booth_size=random.choice(booth_sizes),
+            products=partner.products or '다양한 메뉴',
+            price_range='5,000원 ~ 15,000원',
+            brand_intro=partner.brand_intro or '맛있는 음식을 제공합니다.',
+            has_experience=True,
+            previous_festivals='이전 축제 참여 경험',
+            participation_fee=Decimal(random.randint(30, 80) * 10000),
+            payment_status='paid',
+            booth_location=f'{random.choice(["A", "B", "C"])}-{random.randint(1, 20)}',
+            reviewed_at=event.start_date - timedelta(days=random.randint(7, 14)),
+        )
+
+        total_applications += 1
+        total_approvals += 1
+
+        # 성과 데이터 생성
+        visitor_count = random.randint(500, 1500)
+        estimated_sales = Decimal(random.randint(80, 250) * 10000)
+        review_count = random.randint(8, 45)
+        avg_rating = round(random.uniform(3.8, 4.8), 1)
+
+        # 시간대별 방문객 (10시~21시)
+        hourly_visitors = {}
+        for hour in range(10, 22):
+            # 점심(12-14), 저녁(18-20) 시간대에 더 많은 방문객
+            if hour in [12, 13, 18, 19]:
+                hourly_visitors[str(hour)] = random.randint(80, 150)
+            else:
+                hourly_visitors[str(hour)] = random.randint(30, 80)
+
+        # 인기 제품
+        product_names = ['대표메뉴 A', '시그니처 B', '베스트 C', '인기상품 D']
+        top_products = [
+            {
+                'name': name,
+                'sales': random.randint(50, 200),
+                'revenue': random.randint(100000, 500000)
+            }
+            for name in random.sample(product_names, random.randint(2, 4))
+        ]
+
+        # 긍정/부정 키워드
+        positive_keywords = [
+            {'keyword': '맛있어요', 'count': random.randint(10, 30)},
+            {'keyword': '친절해요', 'count': random.randint(5, 20)},
+            {'keyword': '재방문 의사', 'count': random.randint(5, 15)},
+        ]
+        negative_keywords = [
+            {'keyword': '대기 시간', 'count': random.randint(1, 5)},
+            {'keyword': '가격', 'count': random.randint(1, 3)},
+        ]
+
+        AnalyticsData.objects.create(
+            partner=partner,
+            event=event,
+            application=application,
+            visitor_count=visitor_count,
+            estimated_sales=estimated_sales,
+            average_rating=avg_rating,
+            review_count=review_count,
+            hourly_visitors=hourly_visitors,
+            top_products=top_products,
+            positive_keywords=positive_keywords,
+            negative_keywords=negative_keywords,
+            sentiment_score=random.randint(70, 95),
+        )
+
+    # 파트너 통계 업데이트
+    partner.total_applications = total_applications
+    partner.total_approvals = total_approvals
+    partner.average_rating = round(random.uniform(4.0, 4.7), 1)
+    partner.save()
+
+
 from .serializers import (
     PartnerSignupSerializer,
     PartnerSerializer,
@@ -42,6 +157,14 @@ class PartnerSignupView(APIView):
         serializer = PartnerSignupSerializer(data=request.data)
         if serializer.is_valid():
             result = serializer.save()
+
+            # 새 파트너에게 mock 데이터 생성 (대시보드가 비어 보이지 않도록)
+            try:
+                generate_mock_data_for_partner(result['partner'])
+            except Exception as e:
+                # mock 데이터 생성 실패해도 회원가입은 성공
+                print(f"Mock data generation failed: {e}")
+
             return Response({
                 'message': '파트너 회원가입이 완료되었습니다.',
                 'user_id': result['user'].id,
