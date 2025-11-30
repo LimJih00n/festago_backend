@@ -220,11 +220,11 @@ class Command(BaseCommand):
                     booth_type=random.choice(booth_types),
                     booth_size=random.choice(['3x3', '6x3']),
                     products=partner.products,
-                    price_range=f'{random.randint(3, 10) * 1000}원 ~ {random.randint(10, 20) * 1000}원',
+                    price_range=f'{random.randint(5, 12) * 1000}원 ~ {random.randint(15, 25) * 1000}원',
                     brand_intro=f'{event.name}에 참여하여 {partner.brand_name}의 제품을 선보이고 싶습니다.',
                     has_experience=random.choice([True, False]),
                     previous_festivals='서울 푸드트럭 축제, 한강 음악 페스티벌' if random.choice([True, False]) else '',
-                    participation_fee=Decimal(random.randint(50, 200)) * Decimal('1000'),
+                    participation_fee=Decimal(random.randint(30, 80)) * Decimal('10000'),  # 30만원~80만원
                     payment_status='paid' if status_choice in ['approved', 'completed'] else 'unpaid',
                 )
 
@@ -316,7 +316,7 @@ class Command(BaseCommand):
         return messages
 
     def create_analytics(self, applications):
-        """성과 데이터 15개 생성"""
+        """성과 데이터 15개 생성 - 현실적인 수치"""
         analytics_list = []
 
         # 완료된 지원서에 대해서만 성과 데이터 생성
@@ -324,46 +324,57 @@ class Command(BaseCommand):
         selected_apps = random.sample(completed_apps, min(15, len(completed_apps)))
 
         for app in selected_apps:
-            # 시간대별 방문객 데이터
+            # 시간대별 방문객 데이터 (현실적: 피크타임 80~150명, 비피크 20~60명)
             hourly_data = {}
             for hour in range(10, 22):  # 10시~21시
-                hourly_data[str(hour)] = random.randint(50, 300)
+                if hour in [12, 13, 18, 19, 20]:  # 점심/저녁 피크타임
+                    hourly_data[str(hour)] = random.randint(80, 150)
+                else:
+                    hourly_data[str(hour)] = random.randint(20, 60)
 
-            # 인기 제품 데이터
+            # 총 방문객 (현실적: 일 500~1500명)
+            total_visitors = sum(hourly_data.values())
+
+            # 인기 제품 데이터 (현실적인 판매량)
             products_list = app.products.split(', ')
             top_products = []
             for i, product in enumerate(products_list[:3]):
+                sales_count = random.randint(30, 120)  # 현실적인 판매 개수
+                avg_price = random.randint(8000, 15000)  # 평균 단가
                 top_products.append({
                     'rank': i + 1,
                     'name': product,
-                    'sales': random.randint(50, 200),
-                    'revenue': random.randint(100000, 500000)
+                    'sales': sales_count,
+                    'revenue': sales_count * avg_price
                 })
 
-            # AI 리뷰 분석 (키워드)
+            # AI 리뷰 분석 (키워드) - 현실적인 개수
             positive_keywords = [
-                {'word': '맛있어요', 'count': random.randint(20, 80)},
-                {'word': '친절해요', 'count': random.randint(15, 60)},
-                {'word': '신선해요', 'count': random.randint(10, 50)},
+                {'word': '맛있어요', 'count': random.randint(8, 25)},
+                {'word': '친절해요', 'count': random.randint(5, 18)},
+                {'word': '신선해요', 'count': random.randint(3, 12)},
             ]
             negative_keywords = [
-                {'word': '줄이 길어요', 'count': random.randint(5, 20)},
-                {'word': '가격이 비싸요', 'count': random.randint(3, 15)},
+                {'word': '줄이 길어요', 'count': random.randint(2, 8)},
+                {'word': '가격이 비싸요', 'count': random.randint(1, 5)},
             ]
+
+            # 예상 매출 (현실적: 80만원~250만원)
+            estimated_sales = Decimal(random.randint(80, 250)) * Decimal('10000')
 
             analytics = AnalyticsData.objects.create(
                 partner=app.partner,
                 event=app.event,
                 application=app,
-                visitor_count=sum(hourly_data.values()),
-                estimated_sales=Decimal(random.randint(500, 3000)) * Decimal('1000'),
-                average_rating=round(random.uniform(3.5, 5.0), 1),
-                review_count=random.randint(20, 150),
+                visitor_count=total_visitors,
+                estimated_sales=estimated_sales,
+                average_rating=round(random.uniform(3.8, 4.8), 1),  # 현실적인 평점
+                review_count=random.randint(8, 45),  # 현실적인 리뷰 개수
                 hourly_visitors=hourly_data,
                 top_products=top_products,
                 positive_keywords=positive_keywords,
                 negative_keywords=negative_keywords,
-                sentiment_score=round(random.uniform(60, 95), 1),
+                sentiment_score=round(random.uniform(65, 90), 1),  # 현실적인 감성 점수
             )
             analytics_list.append(analytics)
 
