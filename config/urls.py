@@ -8,6 +8,11 @@ from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 from users.views import EmailOrUsernameTokenObtainPairView
+from users.social_views import (
+    KakaoLoginView, KakaoCallbackView,
+    NaverLoginView, NaverCallbackView,
+    GoogleLoginView, GoogleCallbackView,
+)
 from events.views import ReviewViewSet
 from events.chatbot import ChatbotView
 
@@ -21,6 +26,14 @@ urlpatterns = [
     # JWT Authentication
     path('api/auth/login/', EmailOrUsernameTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    # 소셜 로그인
+    path('api/auth/kakao/', KakaoLoginView.as_view(), name='kakao_login'),
+    path('api/auth/kakao/callback/', KakaoCallbackView.as_view(), name='kakao_callback'),
+    path('api/auth/naver/', NaverLoginView.as_view(), name='naver_login'),
+    path('api/auth/naver/callback/', NaverCallbackView.as_view(), name='naver_callback'),
+    path('api/auth/google/', GoogleLoginView.as_view(), name='google_login'),
+    path('api/auth/google/callback/', GoogleCallbackView.as_view(), name='google_callback'),
 
     # Apps
     path('api/users/', include('users.urls')),

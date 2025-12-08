@@ -178,3 +178,20 @@ else:
     ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+
+# 소셜 로그인 설정
+# 카카오
+KAKAO_CLIENT_ID = os.getenv('KAKAO_CLIENT_ID', '')
+KAKAO_CLIENT_SECRET = os.getenv('KAKAO_CLIENT_SECRET', '')
+KAKAO_REDIRECT_URI = os.getenv('KAKAO_REDIRECT_URI', 'http://localhost:8000/api/auth/kakao/callback/')
+
+# 네이버
+NAVER_CLIENT_ID = os.getenv('NAVER_CLIENT_ID', '')
+NAVER_CLIENT_SECRET = os.getenv('NAVER_CLIENT_SECRET', '')
+NAVER_REDIRECT_URI = os.getenv('NAVER_REDIRECT_URI', 'http://localhost:8000/api/auth/naver/callback/')
+
+# 구글
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID', '')
+GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET', '')
+GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI', 'http://localhost:8000/api/auth/google/callback/')
